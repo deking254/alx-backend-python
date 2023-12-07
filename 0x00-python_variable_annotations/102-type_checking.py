@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """using mypy to check for errors in code provided"""
 
+
 def zoom_array(lst: Tuple, factor: int = 2) -> Tuple:
     """returns a tuple"""
     zoomed_in: Tuple = [

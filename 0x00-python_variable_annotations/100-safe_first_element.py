@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """correct duck-typed annotations for provided code"""
-
 from typing import Sequence, Any, Union
 
-def safe_first_element(lst:Sequence[Any]) -> Union[Any, None]:
+
+def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
     """unkonwn value types of elements provided"""
     if lst:
         return lst[0]
