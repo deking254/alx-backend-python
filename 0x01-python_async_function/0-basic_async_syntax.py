@@ -5,9 +5,9 @@ import random
 import asyncio
 
 
-async def wait_random(max_delay=10):
+async def wait_random(max_delay=10) -> int:
     """a coroutine that returns a random number"""
-    wait = random.random()
+    wait: int = random.random()
     if (wait <= max_delay):
         await asyncio.sleep(wait)
         return wait
