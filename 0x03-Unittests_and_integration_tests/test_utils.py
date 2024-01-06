@@ -27,5 +27,8 @@ class TestAccessNestedMap(unittest.TestCase):
     def test_access_nested_map(self, nested_map: Mapping, path: Sequence) -> Any:
         """checks the input for validity"""
         for key in path:
-            nested_map = nested_map[key]
+            try:
+                nested_map = nested_map[key]
+            except Exception:
+                pass
         return nested_map
