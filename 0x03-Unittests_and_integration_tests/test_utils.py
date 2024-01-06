@@ -27,8 +27,6 @@ class TestAccessNestedMap(unittest.TestCase):
     utils.access_nested_map is working as expected
     """
     @parameterized
-    def test_access_nested_map(self,
-                               nested_map: Mapping, path: Sequence
-                               ) -> Any:
+    def test_access_nested_map(self, nested_map: Mapping, path: Sequence) -> Any:
         """checks the input for validity"""
         return utils.access_nested_map(nested_map, path)
