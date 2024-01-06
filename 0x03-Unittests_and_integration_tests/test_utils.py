@@ -14,7 +14,7 @@ def parameterized(method: Callable) -> Callable:
     """checks for th inputs validity"""
     def expand(self, nested_map, path) -> Any:
         """extends the inputs"""
-        access_method_result = method(self, nested_map, path)
+        unittest.TestCasemethod(self, method(nested_map, path), utils.access_nested_map(nested_map, path))
     return expand
 
 
@@ -26,5 +26,6 @@ class TestAccessNestedMap(unittest.TestCase):
     @parameterized
     def test_access_nested_map(self, nested_map: Mapping, path: Sequence) -> Any:
         """checks the input for validity"""
-        return utils.access_nested_map(nested_map, path)
-TestAccessNestedMap.test_access_nested_map(TestAccessNestedMap(), {"a": {"b": 2}}, ("a", "b"))
+        for key in path:
+            nested_map = nested_map[key]
+        return nested_map
