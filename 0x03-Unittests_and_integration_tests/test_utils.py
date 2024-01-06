@@ -23,6 +23,6 @@ class TestAccessNestedMap(unittest.TestCase):
     implements methods to check
     utils.access_nested_map is working as expected
     """
-    @parameterized
+    @parameterized.expand
     def test_access_nested_map(self, nested_map: Mapping, path: Sequence) -> Any:
         """checks the input for validity"""
