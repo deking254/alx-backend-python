@@ -24,9 +24,4 @@ class TestAccessNestedMap(unittest.TestCase):
     @parameterized.expand([({}, ("a",)), ({"a": 1}, ("a", "b"))])
     def test_access_nested_map_exception(self, nested_map, path):
         """testing if it raises a key error"""
-        error_ = None
-        try:
-            utils.access_nested_map(nested_map, path)
-        except Exception as error:
-            error_ = error
-        unittest.TestCase.assertRaises(self, error_)
+        self.assertRaises(KeyError)
