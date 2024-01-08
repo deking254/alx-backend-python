@@ -49,5 +49,3 @@ class TestGetJson(unittest.TestCase):
             result = utils.get_json(url)
         self.assertEqual(result, expected)
         e.assert_called_once_with(url)
-if __name__ == '__main__':
-    unittest.main()
