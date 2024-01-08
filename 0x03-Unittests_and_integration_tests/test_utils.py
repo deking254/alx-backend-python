@@ -25,7 +25,7 @@ class TestAccessNestedMap(unittest.TestCase):
     @parameterized.expand([a, b, c])
     def test_access_nested_map(s, n_map: Mapping, p: Sequence, r: Any) -> Any:
         """checks the input for validity"""
-        s.assertEqual(s, utils.access_nested_map(nested_map, path), r)
+        s.assertEqual(s, utils.access_nested_map(n_map, p), r)
 
     @parameterized.expand([({}, ("a",)), ({"a": 1}, ("a", "b"))])
     def test_access_nested_map_exception(self, nested_map: Mapping,
