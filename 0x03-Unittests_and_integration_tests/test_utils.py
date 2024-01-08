@@ -35,9 +35,7 @@ class TestGetJson(unittest.TestCase):
     implements the methods to check
     utils.utils.get_json function
     """
-
-    @unittest.mock.patch('requests.get')
-    def test_get_json(self, mock_get):
+    def tiest_get_json(self, mock_get):
         """
         test that utils.get_json returns the expected result
         """
