@@ -2,13 +2,17 @@
 """testing the utitls file"""
 import unittest
 import utils
+import mock
+import requests
 from parameterized import parameterized
 from typing import (
                     Callable,
                     Mapping,
                     Sequence,
-                    Any
+                    Any,
+                    Text
                    )
+
 
 class TestAccessNestedMap(unittest.TestCase):
     """
@@ -25,3 +29,21 @@ class TestAccessNestedMap(unittest.TestCase):
     def test_access_nested_map_exception(self, nested_map, path):
         """testing if it raises a key error"""
         self.assertRaises(KeyError)
+
+class TestGetJson(unittest.TestCase):
+    """
+    implements the methods to check
+    utils.utils.get_json function
+    """
+    @parameterized.expand([('http://example.com', {"payload": True}),('http://holberton.io', {"payload": False})])
+    def test_get_json(self, url, expected):
+        """
+        test that utils.get_json returns the expected result
+        """
+        def json_func():
+            return expected
+        with unittest.mock.patch('requests.get') as e:
+            e.return_value.json = json_func
+            result = utils.get_json(url)
+            self.assertEqual(result, expected)
+            e.assert_called_once_with(url)
