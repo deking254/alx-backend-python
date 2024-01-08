@@ -2,15 +2,13 @@
 """testing the utitls file"""
 import unittest
 import utils
-import mock
-import requests
 from parameterized import parameterized
 from typing import (
+                    Callable,
                     Mapping,
                     Sequence,
                     Any
                    )
-
 
 class TestAccessNestedMap(unittest.TestCase):
     """
