@@ -22,4 +22,3 @@ class TestAccessNestedMap(unittest.TestCase):
         """checks the input for validity"""
         actual = utils.access_nested_map(nested_map, path)
         unittest.TestCase.assertEqual(self, actual, expected)
-TestAccessNestedMap().test_access_nested_map_0()
