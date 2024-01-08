@@ -25,3 +25,12 @@ class TestAccessNestedMap(unittest.TestCase):
     def test_access_nested_map_exception(self, nested_map, path):
         """testing if it raises a key error"""
         self.assertRaises(KeyError)
+
+
+class TestGetJson(unittest.TestCase):
+    """checking mock calls"""
+
+    @unittest.mock.patch('requests.get')
+    def test_get_json(self, mock):
+        """testing the json func"""
+
