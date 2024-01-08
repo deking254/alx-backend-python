@@ -18,15 +18,21 @@ class TestAccessNestedMap(unittest.TestCase):
     implements methods to check
     utils.access_nested_map is working as expected
     """
-    @parameterized.expand([({"a": 1}, ("a",), 1), ({"a": {"b": 2}}, ("a",), {"b": 2}), ({"a": {"b": 2}}, ("a", "b"), 2)])
-    def test_access_nested_map(self, nested_map: Mapping, path: Sequence, expected: Any) -> Any:
+    a = ({"a": 1}, ("a",), 1)
+    b = ({"a": {"b": 2}}, ("a",), {"b": 2})
+    c = ({"a": {"b": 2}}, ("a", "b"), 2)
+
+    @parameterized.expand([a, b, c])
+    def test_access_nested_map(self, nested_map: Mapping,
+                               path: Sequence, expected: Any
+                               ) -> Any:
         """checks the input for validity"""
         actual = utils.access_nested_map(nested_map, path)
         unittest.TestCase.assertEqual(self, actual, expected)
 
     @parameterized.expand([({}, ("a",)), ({"a": 1}, ("a", "b"))])
-    def test_access_nested_map_exception(self, nested_map: Mapping, path: Sequence) -> Any:
+    def test_access_nested_map_exception(self, nested_map: Mapping,
+                                         path: Sequence
+                                         ) -> Any:
         """testing if it raises a key error"""
         self.assertRaises(KeyError)
-if __name__ == '__main__':
-    unittest.main()
