@@ -29,8 +29,4 @@ class TestAccessNestedMap(unittest.TestCase):
 
 class TestGetJson(unittest.TestCase):
     """checking mock calls"""
-
-    @unittest.mock.patch('requests.get')
-    def test_get_json(self, mock):
-        """testing the json func"""
-
+    pass
