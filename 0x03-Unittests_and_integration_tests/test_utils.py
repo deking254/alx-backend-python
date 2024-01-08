@@ -40,10 +40,14 @@ class TestGetJson(unittest.TestCase):
         """
         test that utils.get_json returns the expected result
         """
+        result = None
+
         def json_func():
             return expected
         with unittest.mock.patch('requests.get') as e:
             e.return_value.json = json_func
             result = utils.get_json(url)
-            self.assertEqual(result, expected)
-            e.assert_called_once_with(url)
+        self.assertEqual(result, expected)
+        e.assert_called_once_with(url)
+if __name__ == '__main__':
+    unittest.main()
