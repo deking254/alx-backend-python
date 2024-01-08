@@ -30,7 +30,7 @@ class TestAccessNestedMap(unittest.TestCase):
         """testing if it raises a key error"""
         self.assertRaises(KeyError)
 
-class TestGetJson(unittest.TestCase):
+class TesitGetJson(unittest.TestCase):
     """
     implements the methods to check
     utils.utils.get_json function
