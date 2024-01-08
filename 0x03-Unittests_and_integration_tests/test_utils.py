@@ -9,8 +9,7 @@ from typing import (
                     Callable,
                     Mapping,
                     Sequence,
-                    Any,
-                    Text
+                    Any
                    )
 
 
@@ -29,4 +28,5 @@ class TestAccessNestedMap(unittest.TestCase):
     def test_access_nested_map_exception(self, nested_map: Mapping, path: Sequence) -> Any:
         """testing if it raises a key error"""
         self.assertRaises(KeyError)
-        
+if __name__ == '__main__':
+    unittest.main()
