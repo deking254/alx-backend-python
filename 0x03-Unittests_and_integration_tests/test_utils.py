@@ -29,15 +29,4 @@ class TestAccessNestedMap(unittest.TestCase):
     def test_access_nested_map_exception(self, nested_map, path):
         """testing if it raises a key error"""
         self.assertRaises(KeyError)
-
-class TesitGetJson(unittest.TestCase):
-    """
-    implements the methods to check
-    utils.utils.get_json function
-    """
-    def tiest_get_json(self, mock_get):
-        """
-        test that utils.get_json returns the expected result
-        """
-
         
