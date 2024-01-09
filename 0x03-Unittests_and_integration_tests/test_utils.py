@@ -12,6 +12,7 @@ from typing import (
                     Any
                    )
 
+
 class TestAccessNestedMap(TestCase):
     """
     implements methods to check
@@ -22,21 +23,21 @@ class TestAccessNestedMap(TestCase):
         """checks the input for validity"""
         actual = utils.access_nested_map(nested_map, path)
         TestCase.assertEqual(self, actual, expected)
-    
+
     @parameterized.expand([({}, ("a",)), ({"a": 1}, ("a", "b"))])
     def test_access_nested_map_exception(self, nested_map, path):
         """testing if it raises a key error"""
         self.assertRaises(KeyError)
-    
+
 
 class TestGetJson(TestCase):
     """
     implements a get_json test"""
-    @parameterized.expand([(("http://example.com"), {"payload": True}),(('http://holberton.io'), {"payload": False})])
+    @parameterized.expand([(("http://example.com"), {"payload": True}), (('http://holberton.io'), {"payload": False})])
     def test_get_json(self, value, expected):
         """testing for validity of get_json"""
         with mock.patch('requests.get') as mock_get:
-            mock_get.return_value.json = lambda : expected
+            mock_get.return_value.json = lambda: expected
             result = utils.get_json(value)
             mock_get.assert_called_once_with(value)
             self.assertEqual(expected, result)
@@ -44,13 +45,17 @@ class TestGetJson(TestCase):
 
 class TestMemoize(TestCase):
     """testing the memoize decorator"""
-    def test_memoize(self):
+    def test_memoize(self) -> Any:
         """actual testing of the func"""
         class TestClass:
+            """test class"""
             def a_method(self):
+                """this class is just for testing"""
                 return 42
+
             @memoize
             def a_property(self):
+                """the property is returned"""
                 return self.a_method()
         a = TestClass()
         with mock.patch.object(a, 'a_method', return_value=42) as e:
