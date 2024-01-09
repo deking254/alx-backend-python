@@ -68,8 +68,6 @@ def memoize(fn: Callable) -> Callable:
     def memoized(self):
         """"memoized wraps"""
         if not hasattr(self, attr_name):
-            print(attr_name)
             setattr(self, attr_name, fn(self))
         return getattr(self, attr_name)
-
     return property(memoized)

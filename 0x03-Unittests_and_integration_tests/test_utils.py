@@ -47,11 +47,15 @@ class TestMemoize(TestCase):
     def test_memoize(self):
         """actual testing of the func"""
         class TestClass:
-            @utils.memoize
             def a_method(self):
                 return 42
-            @memoize
+            @utils.memoize
             def a_property(self):
                 return self.a_method()
-            with mock.patch('TestClass.a_method') as mock_a_method:
-                print(mock_a_method)
+        a = TestClass()
+        with mock.patch.object(a, 'a_method', return_value=42) as e:
+            value_a = a.a_property
+            value_b = a.a_property
+            TestCase.assertEqual(self, 42, value_a)
+            TestCase.assertEqual(self, 42, value_b)
+            e.assert_called_once()
