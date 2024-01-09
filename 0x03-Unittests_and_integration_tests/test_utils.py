@@ -3,7 +3,7 @@
 from unittest import mock, TestCase, main
 import utils
 import requests
-import memoize
+from utils import memoize
 from parameterized import parameterized
 from typing import (
                     Callable,
@@ -49,13 +49,13 @@ class TestMemoize(TestCase):
         class TestClass:
             def a_method(self):
                 return 42
-            @utils.memoize
+            @memoize
             def a_property(self):
                 return self.a_method()
         a = TestClass()
         with mock.patch.object(a, 'a_method', return_value=42) as e:
             value_a = a.a_property
             value_b = a.a_property
-            TestCase.assertEqual(self, 42, value_a)
-            TestCase.assertEqual(self, 42, value_b)
+            self.assertEqual(42, value_a)
+            self.assertEqual(42, value_b)
             e.assert_called_once()
