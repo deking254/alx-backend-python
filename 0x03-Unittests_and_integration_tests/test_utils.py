@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """testing the utitls file"""
-from unittest import mock, TestCase
+from unittest import mock, TestCase, main
 import utils
 import requests
+import memoize
 from parameterized import parameterized
 from typing import (
                     Callable,
@@ -39,4 +40,18 @@ class TestGetJson(TestCase):
             result = utils.get_json(value)
             mock_get.assert_called_once_with(value)
             self.assertEqual(expected, result)
-TestGetJson().test_get_json_0_http_example_com()
+
+
+class TestMemoize(TestCase):
+    """testing the memoize decorator"""
+    def test_memoize(self):
+        """actual testing of the func"""
+        class TestClass:
+            @utils.memoize
+            def a_method(self):
+                return 42
+            @memoize
+            def a_property(self):
+                return self.a_method()
+            with mock.patch('TestClass.a_method') as mock_a_method:
+                print(mock_a_method)
