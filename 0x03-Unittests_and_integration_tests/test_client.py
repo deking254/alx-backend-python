@@ -13,8 +13,8 @@ class TestGithubOrgClient(TestCase):
     def test_org(self, company, expected_url):
         """testing the org function in client file"""
         with mock.patch('client.get_json',
-                        return_value={"repos_url": expected_url})
-        as mock_get_json:
+                        return_value={"repos_url": expected_url}
+                        ) as mock_get_json:
             client_instance = client.GithubOrgClient(company)
             client_instance.org
             mock_get_json.assert_called_once_with(expected_url)
@@ -38,7 +38,14 @@ class TestGithubOrgClient(TestCase):
             self.assertEqual(a, [mock_public_repos.return_value])
             mock_public_repos.assert_called_once()
         mock_get_json.assert_called_once()
-
+    
+    @parameterized.expand(
+            [(({"license": {"key": "my_license"}}, "my_license"), True),
+                (({"license": {"key": "other_license"}}, "my_license"), False)])
+    def test_has_license(self, input_values, expected):
+        """testing the has license function in the client file"""
+        a = client.GithubOrgClient.has_license(input_values[0], input_values[1])
+        self.assertEqual(a, expected)
 
 if __name__ == '__main__':
     main()
