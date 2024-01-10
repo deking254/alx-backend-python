@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""testing the utitls file"""
+"""testing the utitls file and working out what is going on"""
 from unittest import mock, TestCase, main
 import utils
 import requests
@@ -25,13 +25,13 @@ class TestAccessNestedMap(TestCase):
                     ("a", "b"), 2)])
     def test_access_nested_map(self, nested_map: Mapping,
                                path: Sequence, expected: Any) -> Any:
-        """checks the input for validity"""
+        """checks the input for validity of the values returned"""
         actual = utils.access_nested_map(nested_map, path)
         TestCase.assertEqual(self, actual, expected)
 
     @parameterized.expand([({}, ("a",)), ({"a": 1}, ("a", "b"))])
     def test_access_nested_map_exception(self, nested_map, path):
-        """testing if it raises a key error"""
+        """testing if it raises a key error when the wrong inputs are"""
         self.assertRaises(KeyError)
 
 
@@ -51,11 +51,11 @@ class TestGetJson(TestCase):
 
 
 class TestMemoize(TestCase):
-    """testing the memoize decorator"""
+    """testing the memoize decorator to see if it does what is intended"""
     def test_memoize(self) -> Any:
-        """actual testing of the func"""
+        """actual testing of the func to """
         class TestClass:
-            """test class"""
+            """tests that the method to see that its called only once"""
             def a_method(self):
                 """this class is just for testing"""
                 return 42
