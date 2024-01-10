@@ -56,12 +56,12 @@ class TestMemoize(TestCase):
         """actual testing of the func to """
         class TestClass:
             """tests that the method to see that its called only once"""
-            def a_method(self):
+            def a_method(self) -> int:
                 """this class is just for testing"""
                 return 42
 
             @memoize
-            def a_property(self):
+            def a_property(self) -> int:
                 """the property is returned"""
                 return self.a_method()
         a = TestClass()
