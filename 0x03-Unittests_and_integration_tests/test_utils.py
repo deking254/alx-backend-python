@@ -18,8 +18,13 @@ class TestAccessNestedMap(TestCase):
     implements methods to check
     utils.access_nested_map is working as expected
     """
-    @parameterized.expand([({"a": 1}, ("a",), 1), ({"a": {"b": 2}}, ("a",), {"b": 2}), ({"a": {"b": 2}}, ("a", "b"), 2)])
-    def test_access_nested_map(self, nested_map: Mapping, path: Sequence, expected: Any) -> Any:
+    @parameterized.expand(
+            [({"a": 1}, ("a",), 1),
+                ({"a": {"b": 2}}, ("a",), {"b": 2}),
+                ({"a": {"b": 2}},
+                    ("a", "b"), 2)])
+    def test_access_nested_map(self, nested_map: Mapping,
+                               path: Sequence, expected: Any) -> Any:
         """checks the input for validity"""
         actual = utils.access_nested_map(nested_map, path)
         TestCase.assertEqual(self, actual, expected)
@@ -33,7 +38,9 @@ class TestAccessNestedMap(TestCase):
 class TestGetJson(TestCase):
     """
     implements a get_json test"""
-    @parameterized.expand([(("http://example.com"), {"payload": True}), (('http://holberton.io'), {"payload": False})])
+    @parameterized.expand(
+            [(("http://example.com"), {"payload": True}),
+                (('http://holberton.io'), {"payload": False})])
     def test_get_json(self, value, expected):
         """testing for validity of get_json"""
         with mock.patch('requests.get') as mock_get:
